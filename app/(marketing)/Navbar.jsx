@@ -12,12 +12,14 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import { useRouter } from 'next/navigation';
 // import AdbIcon from '@mui/icons-material/Adb';
 
 const pages = ['Features', 'Pricing', 'Blog','Documentation'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-function Navbar() {
+function Navbar({setIsLogged}) {
+    const router = useRouter()
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -36,6 +38,10 @@ function Navbar() {
     setAnchorElUser(null);
   };
   
+  const handleLogin = ()=>{
+    setIsLogged(true)
+    // router.push('/login')
+  }
   return (
   <>
     <AppBar position="static" sx={{ backgroundColor: 'transparent',boxShadow:'none'}} >
@@ -134,7 +140,7 @@ function Navbar() {
             {/* <Tooltip title="Open settings"> */}
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
             
-            <Button style={{backgroundColor:'#F3F6FA' ,color:'black',fontSize:'18px',padding:'8px 12px 8px 12px'}}>Login</Button>
+            <Button style={{backgroundColor:'#F3F6FA' ,color:'black',fontSize:'18px',padding:'8px 12px 8px 12px'}} onClick={handleLogin}>Login</Button>
     
                 {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> */}
               </IconButton>
